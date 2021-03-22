@@ -1,0 +1,19 @@
+nav {
+  display: flex;
+  height: 120px;
+  background-color: #4056A1;
+  color: #FFFFFF;
+  padding: 1.5em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav span {
+  font-family: 'Bungee', sans-serif;
+}
+
+nav form button {
+  color: #FFFFFF;
+  background-color: #c1030300; 
+  border-color:#c1030300;
+}
