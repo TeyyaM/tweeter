@@ -1,0 +1,13 @@
+/* background image from https://www.transparenttextures.com/*/
+
+header {
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #731cad;
+background-image: url("../images/purple-black-linen.png");
+color: #e4e3e3
+}
