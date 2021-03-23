@@ -26,11 +26,11 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 0% 5% 0% 5%;
   justify-self: center;
   align-items: center;
 }
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
