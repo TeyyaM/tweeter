@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -51,6 +52,7 @@
 
   <!-- Page-specific (main) content here -->
   <main class="container">
+    <!-- The form for new tweets -->
     <section class="new-tweet">
       <form action="/tweets/" method="POST" id="new-tweet">
         <label for="tweet-text">What are you humming about?</label>
@@ -61,6 +63,19 @@
         </div>
       </form>
     </section>
+    <!-- HTML for tweets -->
+    <article>
+      <header>
+        <!-- <img src="/images/profile-hex.png" alt="User Icon"> -->
+        <span>User.name</span>
+        <span class="email">user.handle</span>
+      </header>
+      <p>I am a very clever tweet!</p>
+      <hr>
+      <footer>
+        99 years ago
+      </footer>
+    </article>
   </main>
 
 </body>

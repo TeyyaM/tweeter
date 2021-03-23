@@ -1,0 +1,24 @@
+article {
+border: 0.2em solid #4d4942;
+width: 90%;
+padding: 2.5%;
+}
+
+article header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+}
+
+article header .email {
+  color: #0044ff00;
+  /* color: #0044ff7c; */
+}
+
+article hr {
+  border-color: inherit;
+}
+
+article footer {
+  font-size: 0.7em;
+}
