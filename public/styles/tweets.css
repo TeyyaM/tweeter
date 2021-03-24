@@ -12,8 +12,16 @@ article header {
 
 article header .email {
   color: #0044ff00;
-  /* color: #0044ff7c; */
 }
+
+article.hover {
+  box-shadow: 5px 10px #0044ff41;
+}
+
+article.hover header .email {
+  color: #0044ff7c;
+}
+
 
 article hr {
   border-color: inherit;
