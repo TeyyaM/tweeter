@@ -70,28 +70,36 @@ const renderTweets = (dataArr) => {
   }
 };
 
+const loadTweets = function() {
+  $.ajax('/tweets', { method: 'GET' })
+    .then((tweets) => {
+      renderTweets(tweets);
+    })
+    .then(() => {
+      $('article').hover(hoverOn, hoverOff);
+    })
+    .catch(error => {
+      throw error;
+    });
+};
 
 $(document).ready(function() {
-  const loadTweets = function() {
-    $.ajax('/tweets', { method: 'GET' })
-      .then((tweets) => {
-        renderTweets(tweets);
-      })
-      .then(() => {
-        $('article').hover(hoverOn, hoverOff);
-      })
-      .catch(error => {
-        throw error;
-      });
-  };
 
   loadTweets();
 
 
   $("form").on("submit", function(event) {
     event.preventDefault();
-    console.log($(this).serialize());
-    console.log($(this).serialize());
+    // Add 5 to max account for 'text=' hence 145
+    if ($(this).serialize().length > 145) {
+      alert("Too long! Shorter is s(T)weeter!");
+    } else if ($(this).serialize().length === 5 || $(this).serialize() === null) {
+      alert("Empty Tweet!");
+    } else {
+      console.log($(this).serialize().length);
+      console.log($(this).serialize());
+      $("#tweet-text").val('');
+    }
   });
 
 });
