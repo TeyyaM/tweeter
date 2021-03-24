@@ -1,8 +1,16 @@
+main.container > section {
+  width: 100%;
+}
+
+main.container > section form {
+  width: 100%;
+}
+
 .new-tweet {
   display: flex;
   align-items: center;
   flex-flow: row wrap;
-  padding: 5% 5% 10% 5%;
+  padding: 5%;
   align-items: flex-end;
 }
 

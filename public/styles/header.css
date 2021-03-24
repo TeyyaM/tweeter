@@ -1,6 +1,7 @@
 /* background image from https://www.transparenttextures.com/*/
 
 body > header {
+  margin-top: 120px;
   height: 400px;
   width: 100%;
   display: flex;

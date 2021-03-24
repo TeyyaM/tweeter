@@ -2,6 +2,10 @@ article {
 border: 0.2em solid #4d4942;
 width: 90%;
 padding: 2.5%;
+display: flex;
+flex-flow: column;
+margin-bottom: 5%;
+
 }
 
 article header {
@@ -10,23 +14,39 @@ article header {
   font-size: 0.9em;
 }
 
+article header img {
+  size: 2em;
+}
+
 article header .email {
+  display: flex;
+  justify-self: right;
   color: #0044ff00;
 }
 
 article.hover {
   box-shadow: 5px 10px #0044ff41;
+  color: #3b3934;
 }
 
 article.hover header .email {
+  display: flex;
+  justify-self: right;
   color: #0044ff7c;
 }
 
 
 article hr {
+  width: 100%;
   border-color: inherit;
 }
 
 article footer {
   font-size: 0.7em;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .icons {
+  color: #41006d;
 }
