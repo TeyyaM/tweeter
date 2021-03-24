@@ -29,31 +29,31 @@ const tweetData = [
     },
     "created_at": 1461113959088
   }
-]
+];
 
 const createTweetElement = (data) => {
   const timeAgo = (created) => {
     let num = created / 1000;
     if (num < 60) {
-      return (`${Math.floor(num)} seconds ago`)
+      return (`${Math.floor(num)} seconds ago`);
     }
     num /= 60;
     if (num < 60) {
-      return (`${Math.floor(num)} minutes ago`)
+      return (`${Math.floor(num)} minutes ago`);
     }
     num /= 60;
     if (num < 24) {
-      return (`${Math.floor(num)} hours ago`)
+      return (`${Math.floor(num)} hours ago`);
     }
     num /= 24;
     if (num < 30) {
-      return (`${Math.floor(num)} days ago`)
+      return (`${Math.floor(num)} days ago`);
     }
     if (num < 365) {
-      return (`${Math.floor(num / 30)} months ago`)
+      return (`${Math.floor(num / 30)} months ago`);
     }
-    return (`${Math.floor(num / 365)} years ago`)
-  }
+    return (`${Math.floor(num / 365)} years ago`);
+  };
   const htmlTweet =
     `<article>
     <header>
@@ -76,7 +76,7 @@ const createTweetElement = (data) => {
     <i class="fas fa-heart"></i>
     </span>
     </footer>
-    </article>`
+    </article>`;
   return htmlTweet;
 };
 
@@ -88,7 +88,7 @@ const renderTweets = (dataArr) => {
 };
 
 
-$(document).ready(function () {
+$(document).ready(function() {
   renderTweets(tweetData);
 });
 
