@@ -6,11 +6,11 @@
 
 //from initial-tweets
 
-const hoverOn = function() {
+const hoverOn = function () {
   $(this).addClass("hover");
 };
 
-const hoverOff = function() {
+const hoverOff = function () {
   $(this).removeClass("hover");
 };
 
@@ -41,14 +41,14 @@ const createTweetElement = (data) => {
     `<article class="posted-tweets">
     <header>
     <span>
-    <img src="${data.user.avatars}" alt="User Icon">
-    ${data.user.name}
+    <img src="${escape(data.user.avatars)}" alt="User Icon">
+    ${escape(data.user.name)}
     </span>
-    <span class="email">${data.user.handle}</span>
+    <span class="email">${escape(data.user.handle)}</span>
     </header>
     
     <body>
-    <p>${data.content.text}</p>
+    <p>${escape(data.content.text)}</p>
     </body>
     <hr>
     <footer>
@@ -63,6 +63,7 @@ const createTweetElement = (data) => {
   return htmlTweet;
 };
 
+// <p>${$(data.content.text).text()}</p>
 const renderTweets = (dataArr) => {
   for (let data of dataArr) {
     let $tweet = createTweetElement(data);
@@ -70,7 +71,7 @@ const renderTweets = (dataArr) => {
   }
 };
 
-const loadTweets = function() {
+const loadTweets = function () {
   $.ajax('/tweets', { method: 'GET' })
     .then((tweets) => {
       renderTweets(tweets);
@@ -83,11 +84,18 @@ const loadTweets = function() {
     });
 };
 
-$(document).ready(function() {
+// Taken from compass/lighthouse labs
+const escape = function (str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+$(document).ready(function () {
 
   loadTweets();
 
-  $("form").on("submit", function(event) {
+  $("form").on("submit", function (event) {
     event.preventDefault();
     // Add 5 to max account for 'text=' hence 145
     if ($(this).serialize().length > 145) {
@@ -106,6 +114,7 @@ $(document).ready(function() {
         .then(() => { // Loads all tweets including the new one and empties the textarea
           loadTweets();
           $("#tweet-text").val('');
+          console.log($("#error-message").text);
         })
         .catch(error => {
           console.log(error);
