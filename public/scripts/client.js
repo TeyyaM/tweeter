@@ -115,6 +115,7 @@ $(document).ready(function () {
           $(".posted-tweets").remove(); // Removes already appended tweets
         })
         .then(() => { // Loads all tweets including the new one and empties the textarea
+          $("#tweet-text").val('')
           loadTweets();
         })
         .catch(error => {
