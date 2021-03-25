@@ -62,15 +62,15 @@ const renderTweets = (dataArr) => {
   }
 };
 
-const loadTweets = function () {
+const loadTweets = function() {
   $.ajax('/tweets', { method: 'GET' })
     .then((tweets) => {
       renderTweets(tweets);
     })
     .then(() => {
-      $('article').hover(function () {
+      $('article').hover(function() {
         $(this).addClass("hover");
-      }, function () {
+      }, function() {
         $(this).removeClass("hover");
       });
     })
@@ -80,33 +80,33 @@ const loadTweets = function () {
 };
 
 // Taken from compass/lighthouse labs
-const escape = function (str) {
+const escape = function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
 // Keeps animation from overlapping
-const errorMessage = function (str) {
+const errorMessage = function(str) {
   if ($("#error-message").text() !== '') {
-    setTimeout(function () {
+    setTimeout(function() {
       $("#error-message").text(str);
       $("#error-message").slideDown();
     }, 700);
   } else {
     $("#error-message").text(str);
-    $("#error-message").slideDown()
+    $("#error-message").slideDown();
   }
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   loadTweets();
 
-  $("form").on("submit", function (event) {
+  $("form").on("submit", function(event) {
     $("#error-message").slideUp();
     event.preventDefault();
-    console.log($('#tweet-text').val().length)
+    console.log($('#tweet-text').val().length);
     if ($('#tweet-text').val().length > 140) {
       errorMessage("Too long! Shorter is s(T)weeter!");
     } else if ($('#tweet-text').val().length === 0 || $(this).serialize() === null) {
@@ -121,7 +121,7 @@ $(document).ready(function () {
           $(".posted-tweets").remove(); // Removes already appended tweets
         })
         .then(() => { // Loads all tweets including the new one and empties the textarea
-          $("#tweet-text").val('')
+          $("#tweet-text").val('');
           $("#error-message").text('');
           $('.new-tweet .counter').text(140);
           loadTweets();
