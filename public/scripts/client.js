@@ -5,15 +5,6 @@
 */
 
 //from initial-tweets
-
-const hoverOn = function () {
-  $(this).addClass("hover");
-};
-
-const hoverOff = function () {
-  $(this).removeClass("hover");
-};
-
 const createTweetElement = (data) => {
   const timeAgo = (created) => {
     let num = created / 1000;
@@ -77,7 +68,11 @@ const loadTweets = function () {
       renderTweets(tweets);
     })
     .then(() => {
-      $('article').hover(hoverOn, hoverOff);
+      $('article').hover(function () {
+        $(this).addClass("hover");
+      }, function () {
+        $(this).removeClass("hover");
+      });
     })
     .catch(error => {
       console.log(error);
@@ -91,6 +86,19 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
+// Keeps animation from overlapping
+const errorMessage = function (str) {
+  if ($("#error-message").text() !== '') {
+    setTimeout(function () {
+      $("#error-message").text(str);
+      $("#error-message").slideDown();
+    }, 700);
+  } else {
+    $("#error-message").text(str);
+    $("#error-message").slideDown()
+  }
+};
+
 $(document).ready(function () {
 
   loadTweets();
@@ -98,13 +106,11 @@ $(document).ready(function () {
   $("form").on("submit", function (event) {
     $("#error-message").slideUp();
     event.preventDefault();
-    // Add 5 to max account for 'text=' hence 145
-    if ($(this).serialize().length > 145) {
-      $("#error-message").text("Too long! Shorter is s(T)weeter!");
-      $("#error-message").slideDown();
-    } else if ($(this).serialize().length === 5 || $(this).serialize() === null) {
-      $("#error-message").text("Empty Tweet!");
-      $("#error-message").slideDown();
+    console.log($('#tweet-text').val().length)
+    if ($('#tweet-text').val().length > 140) {
+      errorMessage("Too long! Shorter is s(T)weeter!");
+    } else if ($('#tweet-text').val().length === 0 || $(this).serialize() === null) {
+      errorMessage("Empty Tweet!");
     } else {
       $.ajax({
         url: "/tweets",
@@ -116,6 +122,8 @@ $(document).ready(function () {
         })
         .then(() => { // Loads all tweets including the new one and empties the textarea
           $("#tweet-text").val('')
+          $("#error-message").text('');
+          $('.new-tweet .counter').text(140);
           loadTweets();
         })
         .catch(error => {
@@ -123,5 +131,4 @@ $(document).ready(function () {
         });
     }
   });
-
 });
