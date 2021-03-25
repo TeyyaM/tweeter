@@ -23,3 +23,7 @@ nav div {
   align-items: center;
   justify-items: center;
 }
+
+.fa-angle-double-down {
+  color: #03d8f4;
+}
