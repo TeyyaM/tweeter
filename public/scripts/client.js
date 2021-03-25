@@ -38,7 +38,7 @@ const createTweetElement = (data) => {
     return (`${Math.floor(num / 365)} years ago`);
   };
   const htmlTweet =
-    `<article>
+    `<article class="posted-tweets">
     <header>
     <span>
     <img src="${data.user.avatars}" alt="User Icon">
@@ -66,7 +66,7 @@ const createTweetElement = (data) => {
 const renderTweets = (dataArr) => {
   for (let data of dataArr) {
     let $tweet = createTweetElement(data);
-    $('.container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+    $('.new-tweet').after($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
   }
 };
 
@@ -79,14 +79,13 @@ const loadTweets = function() {
       $('article').hover(hoverOn, hoverOff);
     })
     .catch(error => {
-      throw error;
+      console.log(error);
     });
 };
 
 $(document).ready(function() {
 
   loadTweets();
-
 
   $("form").on("submit", function(event) {
     event.preventDefault();
@@ -96,9 +95,21 @@ $(document).ready(function() {
     } else if ($(this).serialize().length === 5 || $(this).serialize() === null) {
       alert("Empty Tweet!");
     } else {
-      console.log($(this).serialize().length);
-      console.log($(this).serialize());
-      $("#tweet-text").val('');
+      $.ajax({
+        url: "/tweets",
+        method: 'POST',
+        data: $(this).serialize()
+      })
+        .then(() => {
+          $(".posted-tweets").remove(); // Removes already appended tweets
+        })
+        .then(() => { // Loads all tweets including the new one and empties the textarea
+          loadTweets();
+          $("#tweet-text").val('');
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   });
 
