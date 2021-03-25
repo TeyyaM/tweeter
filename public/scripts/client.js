@@ -6,6 +6,7 @@
 
 //from initial-tweets
 const createTweetElement = (data) => {
+  // To get time ago in seconds/minutes/days/months/years ago
   const timeAgo = (created) => {
     let num = created / 1000;
     if (num < 60) {
@@ -54,7 +55,6 @@ const createTweetElement = (data) => {
   return htmlTweet;
 };
 
-// <p>${$(data.content.text).text()}</p>
 const renderTweets = (dataArr) => {
   for (let data of dataArr) {
     let $tweet = createTweetElement(data);
@@ -120,7 +120,7 @@ $(document).ready(function() {
         .then(() => {
           $(".posted-tweets").remove(); // Removes already appended tweets
         })
-        .then(() => { // Loads all tweets including the new one and empties the textarea
+        .then(() => { // Loads all tweets including the new one, empties the textarea, and resets the counter
           $("#tweet-text").val('');
           $("#error-message").text('');
           $('.new-tweet .counter').text(140);
