@@ -12,12 +12,14 @@ nav {
   top:0;
 }
 
-nav span {
+nav .tweeter {
   font-family: 'Bungee', sans-serif;
+  font-size: 1.5em;
 }
 
-nav form button {
-  color: #FFFFFF;
-  background-color: #c1030300; 
-  border-color:#c1030300;
+nav div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }

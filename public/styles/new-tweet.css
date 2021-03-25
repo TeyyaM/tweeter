@@ -47,3 +47,9 @@ main.container > section form {
 .new-tweet .counter.negative {
   color: red;
 }
+
+#error-message {
+  display: none;
+  color: red;
+  border: 0.1em solid red;
+}

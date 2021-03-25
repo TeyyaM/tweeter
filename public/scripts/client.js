@@ -96,12 +96,15 @@ $(document).ready(function () {
   loadTweets();
 
   $("form").on("submit", function (event) {
+    $("#error-message").slideUp();
     event.preventDefault();
     // Add 5 to max account for 'text=' hence 145
     if ($(this).serialize().length > 145) {
-      alert("Too long! Shorter is s(T)weeter!");
+      $("#error-message").text("Too long! Shorter is s(T)weeter!");
+      $("#error-message").slideDown();
     } else if ($(this).serialize().length === 5 || $(this).serialize() === null) {
-      alert("Empty Tweet!");
+      $("#error-message").text("Empty Tweet!");
+      $("#error-message").slideDown();
     } else {
       $.ajax({
         url: "/tweets",
@@ -113,8 +116,6 @@ $(document).ready(function () {
         })
         .then(() => { // Loads all tweets including the new one and empties the textarea
           loadTweets();
-          $("#tweet-text").val('');
-          console.log($("#error-message").text);
         })
         .catch(error => {
           console.log(error);
