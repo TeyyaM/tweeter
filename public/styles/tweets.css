@@ -53,10 +53,12 @@ article.hover footer .icons {
   color: #41006d;
 }
 
+/* For screen media that doesn't support hover */
 @media screen and (hover: none) {
-  article header .email {
-    display: flex;
-    justify-self: right;
+  article.posted-tweets {
+    box-shadow: none;
+  }
+  article > header > .email {
     color: #0044ff7c;
   }
   footer .icons {
