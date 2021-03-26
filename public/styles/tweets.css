@@ -35,7 +35,6 @@ article.hover header .email {
   color: #0044ff7c;
 }
 
-
 article hr {
   width: 100%;
   border-color: inherit;
@@ -48,5 +47,19 @@ article footer {
 }
 
 footer .icons {
+  color: #31273700;
+}
+article.hover footer .icons {
   color: #41006d;
+}
+
+@media screen and (hover: none) {
+  article header .email {
+    display: flex;
+    justify-self: right;
+    color: #0044ff7c;
+  }
+  footer .icons {
+    color: #41006d;
+  }
 }
