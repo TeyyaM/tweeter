@@ -103,10 +103,12 @@ $(document).ready(function() {
 
   loadTweets();
 
-  $("form").on("submit", function(event) {
+  $("#compose-button").on("click", function() {
+    $('#tweet-text').focus();
+  });
+  $("#new-tweet").on("submit", function(event) {
     $("#error-message").slideUp();
     event.preventDefault();
-    console.log($('#tweet-text').val().length);
     if ($('#tweet-text').val().length > 140) {
       errorMessage("Too long! Shorter is s(T)weeter!");
     } else if ($('#tweet-text').val().length === 0 || $(this).serialize() === null) {
